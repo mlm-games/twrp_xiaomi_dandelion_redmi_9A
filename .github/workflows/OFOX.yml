@@ -64,3 +64,15 @@ jobs:
           MD5 (img): ${{ env.MD5_IMG }}
           MD5 (zip): ${{ env.MD5_ZIP }}
         prerelease: ${{ inputs.mark_prerelease }}
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v4
+      if: inputs.upload_releases == false || github.event_name != 'workflow_dispatch'
+      with:
+        name: TWRP-Recovery-${{ github.event.repository.name }}
+        path: |
+          ${{ env.OUTPUT_DIR }}/*.img
+          ${{ env.OUTPUT_DIR }}/*.tar
+          ${{ env.OUTPUT_DIR }}/*vbmeta*
+          ${{ env.OUTPUT_DIR }}/*.cpio
+          ${{ env.OUTPUT_DIR }}/*.zip
