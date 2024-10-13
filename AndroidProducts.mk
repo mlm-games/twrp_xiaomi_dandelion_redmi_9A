@@ -6,9 +6,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_dandelion.mk
+    $(LOCAL_DIR)/twrp_dandelion.mk
 
 COMMON_LUNCH_CHOICES := \
-    omni_dandelion-user \
-    omni_dandelion-userdebug \
-    omni_dandelion-eng
+    twrp_dandelion-user \
+    twrp_dandelion-userdebug \
+    twrp_dandelion-eng
