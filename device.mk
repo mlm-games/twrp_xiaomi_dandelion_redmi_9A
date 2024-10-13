@@ -6,3 +6,5 @@
 #
 
 LOCAL_PATH := device/xiaomi/dandelion
+
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
