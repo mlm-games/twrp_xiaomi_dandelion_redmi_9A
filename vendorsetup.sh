@@ -18,29 +18,6 @@
 # 	Please maintain this if you use this script or any part of it
 #
 
-#set -o xtrace
-FDEVICE="dandelion"
-THIS_DEVICE=${BASH_ARGV[2]}
-
-fox_get_target_device() {
-local chkdev=$(echo "$BASH_SOURCE" | grep -w \"$FDEVICE\")
-   if [ -n "$chkdev" ]; then 
-      FOX_BUILD_DEVICE="$FDEVICE"
-   else
-      chkdev=$(set | grep BASH_ARGV | grep -w \"$FDEVICE\")
-      [ -n "$chkdev" ] && FOX_BUILD_DEVICE="$FDEVICE"
-   fi
-}
-
-if [ -z "$1" -a -z "$FOX_BUILD_DEVICE" ]; then
-   fox_get_target_device
-fi
-
-if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
-	if [ -z "$THIS_DEVICE" ]; then
-		echo "ERROR! This script requires bash. Run '/bin/bash' and build again."
-		exit 1
-	fi
 
 export TW_DEFAULT_LANGUAGE="en"
 export LC_ALL="C"
@@ -94,9 +71,3 @@ export OF_ALLOW_DISABLE_NAVBAR=0
 
 # New flags for 12.1
 export OF_ENABLE_LPTOOLS=1
-else
-	if [ -z "$FOX_BUILD_DEVICE" -a -z "$BASH_SOURCE" ]; then
-		echo "I: This script requires bash. Not processing the $FDEVICE $(basename $0)"
-	fi
-fi
-#
